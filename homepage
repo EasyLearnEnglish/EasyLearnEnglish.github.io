@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Learn English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Brand Variables from Color Palette --- */
+        :root {
+            --primary-dark: #004B84;
+            --primary-med: #0273A4;
+            --primary-light: #0283AF;
+            --accent-yellow: #FFAB00;
+            --accent-orange: #FF7400;
+            --accent-red: #F93B23;
+            
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --text-dark: #004B84;
+            --text-body: #334155;
+            --text-light: #ffffff;
+            
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-light);
+            color: var(--text-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-yellow);
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 2px solid var(--accent-yellow);
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-orange);
+        }
+
+        .cta-btn {
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-red);
+        }
+
+        /* --- Layout & Sections --- */
+        section {
+            padding: 140px 8% 80px 8%;
+            min-height: 80vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* --- About Me / Landing Section --- */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            color: var(--primary-dark);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            margin-bottom: 32px;
+            color: var(--text-body);
+        }
+
+        .profile-photo-wrapper {
+            position: relative;
+        }
+
+        .profile-photo-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--accent-yellow);
+            border-radius: 8px;
+            z-index: 0;
+        }
+
+        .profile-photo {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 75, 132, 0.15);
+        }
+
+        /* --- Gallery Section for About Me --- */
+        .gallery-section {
+            padding-top: 40px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(2, 115, 164, 0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .gallery-photo {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            padding: 20px;
+        }
+
+        .gallery-caption h3 {
+            font-family: var(--font-serif);
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 60px 8% 30px 8%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h4 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--accent-yellow);
+        }
+
+        .footer-links h5 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--primary-light);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--primary-med);
+            padding-top: 24px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            header { padding: 15px 5%; }
+            .nav-links { display: none; }
+            section { padding: 120px 5% 40px 5%; }
+            .hero-grid, .gallery-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <a href="#about" class="logo-container">
+            <!-- Space reserved for Logo -->
+            <img src="path/to/your-logo.png" alt="Ben's English Logo" style="height: 40px; width: auto;">
+    
+    <span class="logo-text">Ben's English</span>
+</a>
+            <span class="logo-text">Ben's English</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about" class="active">About Me</a></li>
+                <li><a href="#why-learn">Why Learn English with Ben?</a></li>
+                <li><a href="#schedule">Schedule a Lesson</a></li>
+                <li><a href="#support">Support Me</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+        </nav>
+        <a href="#schedule" class="cta-btn">Book Lesson</a>
+    </header>
+
+    <!-- Landing Page: About Me Section -->
+    <section id="about">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Hi, I'm Ben. <br>Your Personal English Tutor.</h1>
+                <p>I help non-native speakers gain natural confidence, refine their pronunciation, and master conversational fluency for career advancement and everyday life.</p>
+                <a href="#schedule" class="cta-btn">Start Learning Today</a>
+            </div>
+            
+            <!-- Space reserved for Profile Photo -->
+            <div class="profile-photo-wrapper">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800" alt="Ben - Online English Tutor Profile Photo" class="profile-photo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Extra Stylish Photos Section on About Me Page -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Teaching Style & Journey</h2>
+            <p>A closer look at my interactive virtual classroom and tailored learning approaches.</p>
+            
+            <div class="gallery-grid">
+                <!-- Additional Photo 1 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600" alt="Interactive Online Teaching Session" class="gallery-photo">
+                    <div class="gallery-caption">
+                        <h3>Interactive Live Lessons</h3>
+                        <p>Real-time collaboration using customized digital materials tailored directly to your specific goals and interests.</p>
+                    </div>
+                </div>
+
+                <!-- Additional Photo 2 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600" alt="Cultural Exchange and Conversation" class="gallery-photo">
+                    <div class="gallery-caption">
+                        <h3>Cultural & Conversational Depth</h3>
+                        <p>Learn idioms, business etiquette, and natural expressions that go far beyond standard textbook English.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h4>Ben's English Studio</h4>
+                <p>Empowering global voices through conversational mastery and confidence.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#why-learn">Why Learn with Ben?</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Bookings</h5>
+                <ul>
+                    <li><a href="#schedule">Schedule a Lesson</a></li>
+                    <li><a href="#schedule">Pricing & Packages</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Community</h5>
+                <ul>
+                    <li><a href="#support">Support Me</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Ben's English Tutoring. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
