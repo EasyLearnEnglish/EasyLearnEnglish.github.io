@@ -1,1 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Easy Learn English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Brand Variables from Color Palette --- */
+        :root {
+            --primary-dark: #004B84;
+            --primary-med: #0273A4;
+            --primary-light: #0283AF;
+            --accent-yellow: #FFAB00;
+            --accent-orange: #FF7400;
+            --accent-red: #F93B23;
+            
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --text-dark: #004B84;
+            --text-body: #334155;
+            --text-light: #ffffff;
+            
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --transition: all 0.3s ease;
+        }
 
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-light);
+            color: var(--text-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-orange);
+        }
+
+        .cta-btn {
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-red);
+        }
+
+        /* --- Layout & Sections --- */
+        section {
+            padding: 140px 8% 80px 8%;
+            min-height: 80vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* --- Contact Section Styles --- */
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-header h1 {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+        }
+
+        .contact-header p {
+            font-size: 1.15rem;
+            color: var(--text-body);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 28px 36px;
+            border: 1px solid rgba(2, 115, 164, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: center;
+            flex-start: 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 75, 132, 0.12);
+            border-color: var(--accent-orange);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--primary-med);
+        }
+
+        .contact-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .contact-description {
+            font-size: 0.95rem;
+            color: var(--text-body);
+        }
+
+        .contact-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            background-color: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            flex-shrink: 0;
+            transition: var(--transition);
+            border: 1px solid rgba(2, 115, 164, 0.15);
+        }
+
+        .contact-card:hover .contact-icon-wrapper {
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+            border-color: var(--accent-orange);
+        }
+
+        .contact-icon-wrapper svg {
+            width: 26px;
+            height: 26px;
+            stroke-width: 2;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 60px 8% 30px 8%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h4 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--accent-yellow);
+        }
+
+        .footer-links h5 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--primary-light);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--primary-med);
+            padding-top: 24px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            header { padding: 15px 5%; }
+            .nav-links { display: none; }
+            section { padding: 120px 5% 40px 5%; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .contact-card { padding: 20px 24px; }
+            .contact-value { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/index.html" class="logo-container">
+            <img src="https://raw.githubusercontent.com/EasyLearnEnglish/Images_Repo/refs/heads/main/EasyLearnEnglish_Logo_NoWords.png" alt="Ben's English Logo" style="height: 40px; width: auto;">
+            <span class="logo-text">Easy Learn English</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/index.html">About</a></li>
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/why-learn-with-me.html">Why Learn English with Me?</a></li>
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/schedule-a-lesson.html">Schedule a Lesson</a></li>
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/support-me.html">Support</a></li>
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/blog/post-1.html">Blog</a></li>
+                <li><a href="#" class="active">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/schedule-a-lesson.html" class="cta-btn">Book Lesson</a>
+    </header>
+
+    <!-- Main Contact Section -->
+    <section id="contact">
+        <div class="container">
+            
+            <div class="contact-header">
+                <h1>Get in Touch</h1>
+                <p>Have questions about lessons, customized plans, or video topics? Feel free to reach out directly through any of the channels below.</p>
+            </div>
+
+            <div class="contact-list">
+                
+                <!-- Email Section -->
+                <a href="mailto:your-email@example.com" class="contact-card">
+                        <div class="contact-icon-wrapper" aria-label="Email Icon">
+                        <!-- Email Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                    </div>
+                  <div class="contact-info">
+                        <span class="contact-label">Email Me</span>
+                        <span class="contact-value">your-email@example.com</span>
+                        <p class="contact-description">Send me a direct message for lesson inquiries or business questions.</p>
+                    </div>
+                </a>
+
+                <!-- Instagram Section -->
+                <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer" class="contact-card">
+                     <div class="contact-icon-wrapper" aria-label="Instagram Icon">
+                        <!-- Instagram Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                        </svg>
+                    </div>
+                  <div class="contact-info">
+                        <span class="contact-label">Instagram</span>
+                        <span class="contact-value">@yourhandle</span>
+                        <p class="contact-description">Follow for daily quick English tips, vocabulary reels, and updates.</p>
+                    </div>
+                </a>
+
+                <!-- YouTube Section -->
+                <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <div class="contact-icon-wrapper" aria-label="YouTube Icon">
+                        <!-- YouTube Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+                            <polygon points="10 15 15 12 10 9 10 15"/>
+                        </svg>
+                    </div>
+                  <div class="contact-info">
+                        <span class="contact-label">YouTube Channel</span>
+                        <span class="contact-value">Easy Learn English</span>
+                        <p class="contact-description">Subscribe for full-length pronunciation guides and grammar lessons.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h4>Easy Learn English</h4>
+                <p>Empowering global voices through conversational mastery and confidence.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/index.html">About Me</a></li>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/why-learn-with-me.html">Why Learn with Ben?</a></li>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/blog/post-1.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Bookings</h5>
+                <ul>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/schedule-a-lesson.html">Schedule a Lesson</a></li>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/schedule-a-lesson.html">Pricing & Packages</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Community</h5>
+                <ul>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/support-me.html">Support Me</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Easy Learn English. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
