@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Lesson - Easy Learn English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Brand Variables from Color Palette --- */
+        :root {
+            --primary-dark: #004B84;
+            --primary-med: #0273A4;
+            --primary-light: #0283AF;
+            --accent-yellow: #FFAB00;
+            --accent-orange: #FF7400;
+            --accent-red: #F93B23;
+            
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --text-dark: #004B84;
+            --text-body: #334155;
+            --text-light: #ffffff;
+            
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-light);
+            color: var(--text-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-orange);
+        }
+
+        .cta-btn {
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-red);
+        }
+
+        /* --- Layout & Scheduling Sections --- */
+        section {
+            padding: 140px 8% 80px 8%;
+            min-height: 80vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            font-size: 1.15rem;
+            color: var(--text-body);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Two Column Layout for Instructions & Calendar */
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* --- Instructions Section Styling --- */
+        .instructions-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid rgba(2, 115, 164, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 75, 132, 0.08);
+        }
+
+        .instructions-card h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-yellow);
+            padding-bottom: 8px;
+        }
+
+        .instruction-step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .instruction-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            background-color: var(--primary-dark);
+            color: var(--accent-yellow);
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 0.95rem;
+            color: var(--text-body);
+        }
+
+        /* --- Appointlet Embed Wrapper --- */
+        .calendar-wrapper {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(2, 115, 164, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 75, 132, 0.08);
+            min-height: 650px;
+        }
+
+        /* Style for Appointlet iframe */
+        .calendar-wrapper iframe {
+            width: 100%;
+            height: 650px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 60px 8% 30px 8%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h4 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--accent-yellow);
+        }
+
+        .footer-links h5 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--primary-light);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--primary-med);
+            padding-top: 24px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            header { padding: 15px 5%; }
+            .nav-links { display: none; }
+            section { padding: 120px 5% 40px 5%; }
+            .booking-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <a href="https://easylearnenglish.github.io/index.html" class="logo-container">
+            <img src="https://raw.githubusercontent.com/EasyLearnEnglish/Images_Repo/refs/heads/main/EasyLearnEnglish_Logo_NoWords.png" alt="Ben's English Logo" style="height: 40px; width: auto;">
+            <span class="logo-text">Easy Learn English</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="https://easylearnenglish.github.io/index.html">About</a></li>
+                <li><a href="https://easylearnenglish.github.io/why-learn-with-me.html">Why Learn English with Me?</a></li>
+                <li><a href="https://easylearnenglish.github.io/contact.html">Contact</a></li>
+                <li><a href="https://easylearnenglish.github.io/support-me.html">Buy Me a Coffee</a></li>
+            </ul>
+        </nav>
+        <a href="https://easylearnenglish.github.io/schedule-a-lesson.html" class="cta-btn">Schedule Lesson</a>
+    </header>
+
+    <!-- Main Scheduling Section -->
+    <section>
+        <div class="container">
+            <!-- Header Title -->
+            <div class="page-header">
+                <h1>Schedule Your Lesson</h1>
+                <p>Choose a time that works best for your schedule and let's take the next step in your English learning journey!</p>
+            </div>
+
+            <div class="booking-grid">
+                <!-- Editable Instructions Section -->
+                <div class="instructions-card">
+                    <h2>How to Book</h2>
+                    
+                    <div class="instruction-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Select Your Lesson Type</h3>
+                            <p>Choose between a trial lesson or standard weekly session from the calendar menu.</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Pick Date & Time</h3>
+                            <p>Select your time zone to see my real-time availability in your local time.</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Confirm & Prepare</h3>
+                            <p>Fill out your basic contact info. You will receive an email confirmation with your video link immediately.</p>
+                        </div>
+                    </div>
+
+                    <!-- Additional Note Box -->
+                    <div style="margin-top: 24px; padding: 16px; background-color: var(--bg-light); border-left: 4px solid var(--accent-orange); border-radius: 4px;">
+                        <p style="font-size: 0.9rem; color: var(--text-body);">
+                            <strong>Need to reschedule?</strong> You can easily change or cancel your appointment through the link provided in your confirmation email up to 24 hours in advance.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Appointlet Calendar Embed Wrapper -->
+                <div class="calendar-wrapper">
+                    <!-- EDIT THIS AREA: Replace the iframe 'src' below with your actual Appointlet scheduling link -->
+                    <iframe 
+                        src="https://appointlet.com/your-appointlet-link-here" 
+                        title="Appointlet Scheduling Calendar"
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h4>Easy Learn English</h4>
+                <p>Empowering global voices through conversational mastery and confidence.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="https://easylearnenglish.github.io/index.html">About</a></li>
+                    <li><a href="https://easylearnenglish.github.io/why-learn-with-me.html">Why Learn with Me?</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Bookings</h5>
+                <ul>
+                    <li><a href="https://easylearnenglish.github.io/schedule-a-lesson.html">Schedule a Lesson</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Community</h5>
+                <ul>
+                    <li><a href="https://easylearnenglish.github.io/support-me.html">Buy Me a Coffee</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Easy Learn English. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
