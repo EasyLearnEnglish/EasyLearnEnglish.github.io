@@ -1,1 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Me - Easy Learn English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Brand Variables from Color Palette --- */
+        :root {
+            --primary-dark: #004B84;
+            --primary-med: #0273A4;
+            --primary-light: #0283AF;
+            --accent-yellow: #FFAB00;
+            --accent-orange: #FF7400;
+            --accent-red: #F93B23;
+            
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --text-dark: #004B84;
+            --text-body: #334155;
+            --text-light: #ffffff;
+            
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --transition: all 0.3s ease;
+        }
 
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-light);
+            color: var(--text-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-orange);
+        }
+
+        .cta-btn {
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-red);
+        }
+
+        /* --- Layout & Sections --- */
+        section {
+            padding: 140px 8% 80px 8%;
+            min-height: 80vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* --- Support Page Specific Styles --- */
+        .support-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .support-header h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .support-mission {
+            font-size: 1.2rem;
+            color: var(--text-body);
+            max-width: 750px;
+            margin: 0 auto 30px auto;
+            line-height: 1.8;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .support-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(2, 115, 164, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 75, 132, 0.12);
+            border-color: var(--primary-med);
+        }
+
+        .platform-logo-wrapper {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .platform-logo {
+            max-height: 60px;
+            max-width: 180px;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .support-card:hover .platform-logo {
+            transform: scale(1.05);
+        }
+
+        .support-btn-label {
+            display: inline-block;
+            margin-top: 15px;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary-dark);
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 2px solid var(--primary-dark);
+            border-radius: 6px;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .support-card:hover .support-btn-label {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 60px 8% 30px 8%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h4 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--accent-yellow);
+        }
+
+        .footer-links h5 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--primary-light);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--primary-med);
+            padding-top: 24px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            header { padding: 15px 5%; }
+            .nav-links { display: none; }
+            section { padding: 120px 5% 40px 5%; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/index.html" class="logo-container">
+            <img src="https://raw.githubusercontent.com/EasyLearnEnglish/Images_Repo/refs/heads/main/EasyLearnEnglish_Logo_NoWords.png" alt="Easy Learn English Logo" style="height: 40px; width: auto;">
+            <span class="logo-text">Easy Learn English</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/index.html">About</a></li>
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/why-learn-with-me.html">Why Learn English with Me?</a></li>
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/schedule-a-lesson.html">Schedule a Lesson</a></li>
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/support-me.html" class="active">Support</a></li>
+                <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/blog/post-1.html">Blog</a></li>
+            </ul>
+        </nav>
+        <a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/schedule-a-lesson.html" class="cta-btn">Book Lesson</a>
+    </header>
+
+    <!-- Support Section -->
+    <section id="support">
+        <div class="container">
+            <div class="support-header">
+                <h1>Support My Mission</h1>
+                <p class="support-mission">
+                    Your support directly enables me to continue creating high-quality, accessible learning resources for students around the globe. By contributing, you help make learning English easier, more affordable, and open to anyone driven to speak with natural confidence and clarity.
+                </p>
+            </div>
+
+            <div class="support-grid">
+                <!-- Patreon Card -->
+                <div class="support-card">
+                    <!-- EDIT HERE: Replace 'YOUR_PATREON_LINK_HERE' with your actual Patreon link -->
+                    <a href="YOUR_PATREON_LINK_HERE" target="_blank" rel="noopener noreferrer">
+                        <div class="platform-logo-wrapper">
+                            <img src="https://c5.patreon.com/external/logo/downloads_wordmark_white_on_navy.png" alt="Patreon Logo" class="platform-logo" style="background-color: #052d49; padding: 10px; border-radius: 6px;">
+                        </div>
+                    </a>
+                    <!-- EDIT HERE: Replace 'YOUR_PATREON_LINK_HERE' with your actual Patreon link -->
+                    <a href="YOUR_PATREON_LINK_HERE" target="_blank" rel="noopener noreferrer" class="support-btn-label">
+                        Support me on Patreon
+                    </a>
+                </div>
+
+                <!-- Wise Card -->
+                <div class="support-card">
+                    <!-- EDIT HERE: Replace 'YOUR_WISE_LINK_HERE' with your actual Wise account link -->
+                    <a href="YOUR_WISE_LINK_HERE" target="_blank" rel="noopener noreferrer">
+                        <div class="platform-logo-wrapper">
+                            <img src="https://wise.com/web-art/assets/icons/wise-logo.svg" alt="Wise Logo" class="platform-logo">
+                        </div>
+                    </a>
+                    <!-- EDIT HERE: Replace 'YOUR_WISE_LINK_HERE' with your actual Wise account link -->
+                    <a href="YOUR_WISE_LINK_HERE" target="_blank" rel="noopener noreferrer" class="support-btn-label">
+                        Support me through Wise
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h4>Easy Learn English</h4>
+                <p>Empowering global voices through conversational mastery and confidence.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/index.html">About Me</a></li>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/why-learn-with-me.html">Why Learn with Ben?</a></li>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/blog/post-1.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Bookings</h5>
+                <ul>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/schedule-a-lesson.html">Schedule a Lesson</a></li>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/schedule-a-lesson.html">Pricing & Packages</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Community</h5>
+                <ul>
+                    <li><a href="https://easylearnenglish.github.io/easylearnenglish.github.io/my-website/support-me.html">Support Me</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Easy Learn English. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
